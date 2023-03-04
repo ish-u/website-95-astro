@@ -1,15 +1,19 @@
 ---
+import "../styles/style.css";
+import Layout from "../layouts/layout.astro";
+import AboutMe from "../components/Windows/AboutMe.astro";
+import ContactMe from "../components/Windows/ContactMe.astro";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<script>
+  import { moveWindow } from "../scripts/addMoveWindowHandler";
+  // Getting All the Windows
+  const windows = document.querySelectorAll(".window");
+  // Making Windows Dragable
+  windows.forEach((windowDiv) => moveWindow(windowDiv.getAttribute("data-window") ?? ""));
+</script>
+
+<Layout>
+  <ContactMe />
+  <AboutMe />
+</Layout>

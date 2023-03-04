@@ -1,0 +1,11 @@
+@font-face{
+  font-family: 'MS';
+  src: url("../../public/fonts/MS_Sans_Serif_8pt.ttf") format("truetype");
+}
+
+html {
+  font-family: MS;
+  background-color: #008080;
+  overflow: hidden;
+}
+

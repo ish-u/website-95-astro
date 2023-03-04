@@ -1,0 +1,45 @@
+---
+const currentTime = new Date().toLocaleTimeString().toString();
+---
+
+<style>
+  #taskbar {
+    display: flex;
+    align-items: center;
+    align-content: center;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    z-index: 100000;
+    background-color: #b5b3b3;
+    width: 100vw;
+    border-top: white solid 1px;
+  }
+
+  #start-button {
+    width: 5rem;
+  }
+
+  #clock {
+    position: absolute;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    width: 6rem;
+    padding: 5px;
+    margin: 5px;
+    box-shadow: inset 2px 2px black, 1px 1px 2px white;
+  }
+</style>
+
+<script is:inline>
+  setInterval(() => {
+    const clock = document.getElementById("clock");
+    clock.innerHTML = new Date().toLocaleTimeString().toString();
+  }, 1000);
+</script>
+
+<div id="taskbar">
+  <img id="start-button" src="https://i.pinimg.com/originals/0b/32/fb/0b32fb0f7b144ec745d4e3b5f3f783fa.png" width="5rem" alt="Start Button" />
+  <div id="clock">{currentTime}</div>
+</div>
