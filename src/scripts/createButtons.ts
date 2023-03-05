@@ -38,7 +38,7 @@ export function createButtons(windowName: string, windowIcon: string, windowData
 
     const button = document.createElement("div");
     button.classList.add("taskbar-button");
-    button.classList.add("active");
+    button.classList.add("close");
     button.setAttribute("data-window-taskbar", windowDataAttr);
 
     const name = document.createElement("div");

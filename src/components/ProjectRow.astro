@@ -1,0 +1,40 @@
+---
+const { project_name, project_description, project_link, tech_used } = Astro.props;
+---
+
+<style>
+  .project {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin-bottom: 25px;
+  }
+  .diskette {
+    width: 10%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+  .project_description {
+    width: 90%;
+    margin-left: 1%;
+  }
+</style>
+
+<div class="project">
+  <div class="diskette">
+    <div>
+      <img src="images/Diskette.ico" alt="" />
+    </div>
+  </div>
+  <div class="project_description">
+    <div>
+      <span><a href={project_link}>{project_name}</a></span>
+      <br />
+      <span>{project_description}</span>
+      <br />
+      <span style="font-size: small">used:-{tech_used}</span>
+    </div>
+  </div>
+</div>

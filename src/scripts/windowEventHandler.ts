@@ -27,6 +27,8 @@ export function windowEventHandler(windowDataAttr: string, event: "SHOW" | "TOGG
       return;
     case "CLOSE":
       windowDiv.style.display = "none";
+      windowDiv.style.top = "5rem";
+      windowDiv.style.left = "20rem";
       taskbarButton.classList.add("close");
       return;
   }

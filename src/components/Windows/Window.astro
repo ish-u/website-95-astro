@@ -12,7 +12,7 @@ const { windowDataAttr, title, windowIcon } = Astro.props;
     position: absolute;
     z-index: 10;
     top: 5rem;
-    left: 20rem;
+    left: 25rem;
     background-color: white;
     border-style: solid;
     border-color: #b5b3b3;
@@ -62,16 +62,22 @@ const { windowDataAttr, title, windowIcon } = Astro.props;
   .minimize-button:hover {
     cursor: pointer;
   }
-  .content {
+  .shadow {
     box-shadow: inset 2px 2px 2px black;
-    line-height: 1.5rem;
     flex-grow: 1;
     display: flex;
+    overflow-y: hidden;
+  }
+  .content {
+    line-height: 1.5rem;
     padding: 10px;
+    overflow-y: scroll;
+    width: 100%;
+    margin-top: 3px;
   }
 </style>
 
-<div class="window" data-window={windowDataAttr} data-title={title} data-icon={windowIcon}>
+<div style="display:none" class="window" data-window={windowDataAttr} data-title={title} data-icon={windowIcon}>
   <div class="top-bar" data-title={windowDataAttr}>
     <div class="title">
       <img class="title-icon" src={`/images/${windowIcon}`} alt="Icon for Title" srcset="" height="18px" width="18px" />
@@ -81,7 +87,9 @@ const { windowDataAttr, title, windowIcon } = Astro.props;
       <div class="close-button" data-window={windowDataAttr}><b>x</b></div>
     </div>
   </div>
-  <div class="content">
-    <slot />
+  <div class="shadow">
+    <div class="content">
+      <slot />
+    </div>
   </div>
 </div>

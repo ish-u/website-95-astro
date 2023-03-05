@@ -2,4 +2,43 @@
 import Window from "./Window.astro";
 ---
 
-<Window windowDataAttr="contact_me" title="Contact Me" windowIcon="Phone (2 of 5 diodes on).ico">contact_me</Window>
+<style>
+  #contact-me-window {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+  }
+  a,
+  a:visited {
+    color: #0000ee;
+  }
+</style>
+
+<Window windowDataAttr="contact_me" title="Contact Me" windowIcon="Phone (2 of 5 diodes on).ico">
+  <div id="contact-me-window">
+    <div>
+      Thank you for visiting my website !<br />
+      If you have any questions, comments, or would like to get in touch, <br />
+      please feel free to contact me. <br />
+    </div>
+    <br />
+    <div>
+      <a href="mailto:anmolgupta520@gmail.com">email</a>
+      <a href="https://github.com/ish-u">github</a>
+      <a href="https://www.linkedin.com/in/anmolgupta0/">linkedin</a>
+      <a href="https://leetcode.com/ish-u/">leetcode</a>
+      <a href="https://open.spotify.com/user/6sgvw84ghr0r9oegtq48dszqu">spotify</a>
+      <a href="https://www.twitch.tv/an60221023">twitch</a>
+      <a href="https://twitter.com/UserNo0001">twitter</a>
+      <a href="https://www.youtube.com/channel/UCM5LZDjDd2icCkiyvhoqBGg">youtube</a>
+      <a href="https://www.instagram.com/user_no_01/">instagram</a>
+      <a href="https://ish-u.github.io/">old website</a>
+    </div>
+    <br />
+    <div style="display: flex; justify-content: center;">
+      <img src="https://c.tenor.com/4KP456_GUqQAAAAC/infinate-forever.gif" height="192" alt="Infinte Animation" />
+    </div>
+  </div>
+</Window>

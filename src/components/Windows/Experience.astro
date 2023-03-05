@@ -1,0 +1,165 @@
+---
+import Window from "./Window.astro";
+---
+
+<style>
+  .exp-heading,
+  .edu-heading {
+    margin: 5px 10px;
+    font-size: larger;
+    font-weight: bold;
+    text-decoration: underline;
+  }
+
+  .exp-container,
+  .edu-container {
+    display: flex;
+    width: 100%;
+  }
+
+  .exp-bullet {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px;
+  }
+
+  .exp-bullet img {
+    height: 42px;
+  }
+
+  .join-dot-open {
+    border: 3px solid black;
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+  }
+
+  .join-dot {
+    border: 3px solid black;
+    background-color: black;
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+  }
+
+  .join-line {
+    background-color: black;
+    width: 2.5px;
+    flex-grow: 1;
+  }
+
+  .exp-content,
+  .edu-content {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    flex-grow: 1;
+  }
+
+  .exp-info {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .exp-description {
+    margin: 10px 0px;
+    margin-left: 15px;
+  }
+
+  .org-position,
+  .org-duration {
+    font-weight: bold;
+  }
+
+  .org-location,
+  .org-name {
+    font-style: italic;
+  }
+
+  a:visited {
+    color: #0000ee;
+  }
+</style>
+
+<Window windowDataAttr="experience" title="Experience" windowIcon="Book.ico">
+  <div class="exp">
+    <div class="exp-heading">Experience</div>
+    <div class="exp-container">
+      <div class="exp-bullet">
+        <div class="join-dot-open"></div>
+        <div class="join-line"></div>
+      </div>
+      <div class="exp-content">
+        <div class="exp-info">
+          <div>
+            <div class="org-position">Backend Developer</div>
+            <div class="org-name">
+              <a href="http://bot.space/">BotSpace</a>
+            </div>
+          </div>
+          <div>
+            <div class="org-duration">Dec. 2022 – Present</div>
+            <div class="org-location">Remote</div>
+          </div>
+        </div>
+        <div class="exp-description">
+          <div>- Building Workflow Builder</div>
+          <div>- Working with NestJS, NextJS, MUI</div>
+        </div>
+      </div>
+    </div>
+    <div class="exp-container">
+      <div class="exp-bullet">
+        <div class="join-dot"></div>
+        <div class="join-line"></div>
+      </div>
+      <div class="exp-content">
+        <div class="exp-info">
+          <div>
+            <div class="org-position">Software Engineering Intern</div>
+            <div class="org-name">
+              <a href="https://www.eatwithnymble.com/">Nymble</a>
+            </div>
+          </div>
+          <div>
+            <div class="org-duration">Sep. 2021 – Oct. 2021</div>
+            <div class="org-location">Remote</div>
+          </div>
+        </div>
+        <div class="exp-description">
+          <div>- Developed the front-end of an internal tool using vue.js and vuetify</div>
+          <div>- Integrated the GraphQL API using vue-apollo to the front-end</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="exp">
+    <div class="exp-heading">Education</div>
+    <div class="exp-container">
+      <div class="exp-bullet">
+        <div class="join-dot"></div>
+        <div class="join-line"></div>
+      </div>
+      <div class="exp-content">
+        <div class="exp-info">
+          <div>
+            <div class="org-position">
+              <a> BSc. (H.) Computer Science</a>
+            </div>
+            <div class="org-name">
+              <a href="http://www.du.ac.in/">University Of Delhi</a>
+            </div>
+          </div>
+          <div>
+            <div class="org-duration">Jul. 2019 – Jul. 2022</div>
+            <div class="org-location">New Delhi</div>
+          </div>
+        </div>
+        <div class="exp-description">
+          - <a href="https://github.com/ish-u/courses">Classes taken</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</Window>

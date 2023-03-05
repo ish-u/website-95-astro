@@ -3,6 +3,8 @@ import "../styles/style.css";
 import Layout from "../layouts/layout.astro";
 import AboutMe from "../components/Windows/AboutMe.astro";
 import ContactMe from "../components/Windows/ContactMe.astro";
+import Experience from "../components/Windows/Experience.astro";
+import Projects from "../components/Windows/Projects.astro";
 ---
 
 <script>
@@ -23,19 +25,23 @@ import ContactMe from "../components/Windows/ContactMe.astro";
     // Adding Toggle to Close Button
     const closeButton = windowDiv.querySelector(".close-button");
     if (closeButton) {
-      closeButton.addEventListener("click", (e) => windowEventHandler(windowDataAttr, "CLOSE"));
+      closeButton.addEventListener("click", () => windowEventHandler(windowDataAttr, "CLOSE"));
     }
     // Adding Toggle to Minimize Button
     const minimizeButton = windowDiv.querySelector(".minimize-button");
     if (minimizeButton) {
-      minimizeButton.addEventListener("click", (e) => windowEventHandler(windowDataAttr, "TOGGLE"));
+      minimizeButton.addEventListener("click", () => windowEventHandler(windowDataAttr, "TOGGLE"));
     }
     // Creating Buttons for Taskbar and Start Menu
     createButtons(windowName, windowIcon, windowDataAttr);
   });
+  // Initlal Setting
+  windowEventHandler("about_me", "SHOW");
 </script>
 
 <Layout>
-  <ContactMe />
   <AboutMe />
+  <Experience />
+  <Projects />
+  <ContactMe />
 </Layout>
