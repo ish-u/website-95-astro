@@ -1,0 +1,243 @@
+---
+import Window from "./Window.astro";
+const defaultColors = [
+  "rgb(0,0,0)", // Black
+  "rgb(128,128,128)", // Dark Gray
+  "rgb(128,0,0)", // Dark Red
+  "rgb(128,128,0)", // Pea Green
+  "rgb(0,128,0)", // Dark Green
+  "rgb(0,128,128)", // Slate
+  "rgb(0,0,128)", // Dark Blue
+  "rgb(128,0,128)", // Lavender
+  "rgb(128,128,64)", //
+  "rgb(0,64,64)", //
+  "rgb(0,128,255)", //
+  "rgb(0,64,128)", //
+  "rgb(64,0,255)", //
+  "rgb(128,64,0)", //
+
+  "rgb(255,255,255)", // White
+  "rgb(192,192,192)", // Light Gray
+  "rgb(255,0,0)", // Bright Red
+  "rgb(255,255,0)", // Yellow
+  "rgb(0,255,0)", // Bright Green
+  "rgb(0,255,255)", // Cyan
+  "rgb(0,0,255)", // Bright Blue
+  "rgb(255,0,255)", // Magenta
+  "rgb(255,255,128)", //
+  "rgb(0,255,128)", //
+  "rgb(128,255,255)", //
+  "rgb(128,128,255)", //
+  "rgb(255,0,128)", //
+  "rgb(255,128,64)",
+];
+---
+
+<style>
+  .paint {
+    height: 100%;
+    width: 100%;
+    border: 1px solid true;
+  }
+
+  #paint-title {
+    margin-bottom: 0;
+    box-shadow: none;
+  }
+
+  .paint-area {
+    height: 85%;
+    width: 100%;
+    display: flex;
+  }
+
+  #paint-options {
+    width: 15%;
+    height: 100%;
+    background: #b5b3b3;
+    border-top: 2px solid grey;
+    border-bottom: 2px solid grey;
+  }
+  .paint-canvas {
+    box-shadow: inset 2px 2px 2px black;
+    flex-grow: 1;
+    overflow: hidden;
+    border-right: 5px solid #b5b3b3;
+  }
+
+  #paint-colors {
+    height: calc(15%);
+    background: #b5b3b3;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  #color-list {
+    display: flex;
+    flex-wrap: wrap;
+    width: 308px;
+    height: 45px;
+    margin-left: 4px;
+  }
+
+  #color-switcher {
+    box-shadow: inset 1px 1px black, 1px 1px white;
+    box-sizing: border-box;
+    height: 45px;
+    width: 45px;
+    position: relative;
+    background-color: white;
+  }
+
+  .colors {
+    box-shadow: inset 1px 1px black, 1px 1px white;
+    border-bottom: 1px solid #c0c0c0;
+    border-right: 1px solid #c0c0c0;
+    border-top: 1px solid #808080;
+    border-left: 1px solid #808080;
+    box-sizing: border-box;
+    margin: 1px;
+    padding: 0;
+    height: 20px;
+    width: 20px;
+  }
+
+  #color-one,
+  #color-two {
+    height: 18px;
+    width: 18px;
+    box-shadow: 1px 1px #808080;
+    border: 0.25px solid #c0c0c0;
+    box-sizing: border-box;
+  }
+  #color-one {
+    position: absolute;
+    left: 9px;
+    top: 9px;
+    background: #000;
+    z-index: 1;
+  }
+
+  #color-two {
+    position: absolute;
+    left: 18px;
+    top: 18px;
+    background: #fff;
+  }
+
+  #eraser {
+    width: calc(100%-10px);
+    margin: 10px 10px;
+    display: flex;
+    margin: 20px auto;
+    height: 36px;
+    width: 36px;
+    padding: 2px;
+    box-shadow: 2px 2px black, inset 1px 1px white;
+  }
+
+  .eraser-selected {
+    background-color: rgba(255, 255, 255, 0.5);
+    box-shadow: inset 2px 2px black, 1px 1px white !important;
+  }
+
+  #stroke-menu {
+    box-shadow: inset 1px 1px grey, 0.5px 0.5px white;
+    height: 90px;
+    width: calc(100%-10px);
+    margin: 5px 10px;
+  }
+
+  .stroke-option {
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .stroke-option-selected {
+    background-color: blue;
+  }
+
+  .stroke-option-selected line {
+    height: 5px;
+    width: calc(100% - 20px);
+    stroke: rgb(255, 255, 255) !important;
+  }
+
+  .stroke-option svg {
+    height: 5px;
+    width: calc(100% - 20px);
+  }
+</style>
+
+<script>
+  // Settting Canvas Size
+  const canvas = document.getElementById("canvas") as HTMLCanvasElement;
+  if (canvas) {
+    const ctx = canvas.getContext("2d");
+    if (ctx && canvas.parentElement) {
+      ctx.canvas.width = canvas.parentElement.clientWidth;
+      ctx.canvas.height = canvas.parentElement.clientHeight;
+    }
+  }
+</script>
+
+<Window title="Paint" windowDataAttr="paint" windowIcon="Paint.ico" noPadding={true}>
+  <div class="paint">
+    <div class="paint-area">
+      <div id="paint-options">
+        <div id="stroke-menu">
+          {
+            [3, 6, 9].map((stroke) => (
+              <div class={`stroke-option  ${stroke === 3 ? "stroke-option-selected" : ""}`} data-stroke={stroke}>
+                <svg height="10" width="90">
+                  <line x1="0" y1="0" x2="90" y2="0" style={`stroke: rgb(0, 0, 0); stroke-width: ${stroke}`} />
+                </svg>
+              </div>
+            ))
+          }
+        </div>
+        <div>
+          <div id="eraser">
+            <svg style="color: white" xmlns="http://www.w3.org/2000/svg" height="32" width="32" viewBox="0 0 256 256"
+              ><rect width="256" height="256" fill="none"></rect><line
+                x1="91.5"
+                y1="99.5"
+                x2="159.4"
+                y2="167.4"
+                fill="none"
+                stroke="#000"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="24"></line><path
+                d="M216,215.8H72.1L35,178.7a15.9,15.9,0,0,1,0-22.6L148.1,43a15.9,15.9,0,0,1,22.6,0L216,88.2a16.2,16.2,0,0,1,0,22.7L111,215.8"
+                fill="white"
+                stroke="#000"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="24"></path></svg
+            >
+          </div>
+        </div>
+      </div>
+      <div class="paint-canvas">
+        <canvas id="canvas"></canvas>
+      </div>
+    </div>
+    <div id="paint-colors">
+      <div id="color-switcher">
+        <div id="color-one"></div>
+        <div id="color-two"></div>
+      </div>
+      <div id="color-list">
+        {
+          defaultColors.map((color) => {
+            return <div class="colors" data-color={color} style={`background: ${color};`} />;
+          })
+        }
+      </div>
+    </div>
+  </div>
+</Window>

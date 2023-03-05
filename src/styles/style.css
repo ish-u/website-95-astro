@@ -1,6 +1,6 @@
 @font-face {
   font-family: "MS";
-  src: url("../../public/fonts/MS_Sans_Serif_8pt.ttf") format("truetype");
+  src: url("/fonts/MS_Sans_Serif_8pt.ttf") format("truetype");
 }
 
 html {

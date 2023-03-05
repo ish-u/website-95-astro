@@ -5,6 +5,7 @@ import AboutMe from "../components/Windows/AboutMe.astro";
 import ContactMe from "../components/Windows/ContactMe.astro";
 import Experience from "../components/Windows/Experience.astro";
 import Projects from "../components/Windows/Projects.astro";
+import Paint from "../components/Windows/Paint.astro";
 ---
 
 <script>
@@ -12,6 +13,7 @@ import Projects from "../components/Windows/Projects.astro";
   import { createButtons } from "../scripts/createButtons";
   import { moveWindowToFront } from "../scripts/moveWidnowToFrontHandler";
   import { windowEventHandler } from "../scripts/windowEventHandler";
+  import { initCanvas } from "../scripts/initCanvas";
   // Getting All the Windows
   const windows = document.querySelectorAll(".window");
   windows.forEach((windowDiv) => {
@@ -35,13 +37,15 @@ import Projects from "../components/Windows/Projects.astro";
     // Creating Buttons for Taskbar and Start Menu
     createButtons(windowName, windowIcon, windowDataAttr);
   });
+  initCanvas();
   // Initlal Setting
-  windowEventHandler("about_me", "SHOW");
+  windowEventHandler("paint", "SHOW");
 </script>
 
 <Layout>
   <AboutMe />
   <Experience />
   <Projects />
+  <Paint />
   <ContactMe />
 </Layout>

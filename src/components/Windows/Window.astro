@@ -1,5 +1,5 @@
 ---
-const { windowDataAttr, title, windowIcon } = Astro.props;
+const { windowDataAttr, title, windowIcon, noPadding = false } = Astro.props;
 ---
 
 <style>
@@ -87,9 +87,19 @@ const { windowDataAttr, title, windowIcon } = Astro.props;
       <div class="close-button" data-window={windowDataAttr}><b>x</b></div>
     </div>
   </div>
-  <div class="shadow">
-    <div class="content">
-      <slot />
-    </div>
-  </div>
+  {
+    noPadding ? (
+      <>
+        <slot />
+      </>
+    ) : (
+      <>
+        <div class="shadow">
+          <div class="content">
+            <slot />
+          </div>
+        </div>
+      </>
+    )
+  }
 </div>
