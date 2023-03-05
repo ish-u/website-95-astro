@@ -54,6 +54,23 @@ const currentTime = new Date().toLocaleTimeString().toString();
   }, 1000);
 </script>
 
+<script>
+  const toggleStartMenu = () => {
+    const startmenu = document.getElementById("start-menu");
+    if (startmenu) {
+      if (startmenu.style.display === "block") {
+        startmenu.style.display = "none";
+      } else {
+        startmenu.style.display = "block";
+      }
+    }
+  };
+  const startButton = document.getElementById("start-button");
+  if (startButton) {
+    startButton.addEventListener("click", () => toggleStartMenu());
+  }
+</script>
+
 <div id="taskbar">
   <img id="start-button" src="https://i.pinimg.com/originals/0b/32/fb/0b32fb0f7b144ec745d4e3b5f3f783fa.png" width="5rem" alt="Start Button" />
   <div id="clock">{currentTime}</div>

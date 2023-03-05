@@ -1,0 +1,51 @@
+<style>
+  .start-menu {
+    min-width: 12.5rem;
+    min-height: 10rem;
+    padding: 5px;
+    margin: 5px;
+    box-shadow: inset 2px 2px white, 2px 2px 2px black;
+    position: absolute;
+    bottom: 2.75rem;
+    z-index: 10000000;
+    left: 0;
+    background-color: #b5b3b3;
+  }
+
+  .side-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 15%;
+    height: 98%;
+    z-index: -10;
+    background: #808080;
+    writing-mode: vertical-lr;
+    transform: rotate(-180deg);
+    margin: 3px;
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    align-items: center;
+  }
+
+  .side-bar .logo-text {
+    margin-top: 10px;
+    font-weight: 900;
+    color: rgba(182, 180, 180, 0.7);
+    font-size: x-large;
+  }
+
+  .side-bar .logo-number {
+    margin-top: 5px;
+    color: white;
+    font-size: x-large;
+  }
+</style>
+
+<div id="start-menu" class="start-menu" style="display: none;">
+  <div class="side-bar">
+    <span class="logo-text">Website</span>
+    <span class="logo-number">95</span>
+  </div>
+</div>

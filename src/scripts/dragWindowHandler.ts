@@ -1,13 +1,14 @@
 import { moveWindowToFront } from "./moveWidnowToFrontHandler";
 
-export function moveWindow(windowName: string) {
+// Ref :- https://www.w3schools.com/howto/howto_js_draggable.asp
+export function dragWindowHandler(windowDataAttr: string) {
   let pos1 = 0,
     pos2 = 0,
     pos3 = 0,
     pos4 = 0;
 
-  const windowDiv: HTMLDivElement | null = document.querySelector(`[data-window=${windowName}]`);
-  const windowTitleBar: HTMLDivElement | null = windowDiv ? windowDiv.querySelector(`[data-title=${windowName}]`) : null;
+  const windowDiv: HTMLDivElement | null = document.querySelector(`[data-window=${windowDataAttr}]`);
+  const windowTitleBar: HTMLDivElement | null = windowDiv ? windowDiv.querySelector(`[data-title=${windowDataAttr}]`) : null;
   if (windowDiv && windowTitleBar) {
     windowTitleBar.onmousedown = dragMouseDown;
   }
@@ -27,7 +28,7 @@ export function moveWindow(windowName: string) {
     e = e || window.event;
     e.preventDefault();
     // Move Window To Front on start dragging
-    moveWindowToFront(windowName);
+    moveWindowToFront(windowDataAttr);
     // calculate the new cursor position:
     pos1 = pos3 - e.clientX;
     pos2 = pos4 - e.clientY;
