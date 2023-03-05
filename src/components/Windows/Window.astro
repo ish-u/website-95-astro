@@ -1,5 +1,5 @@
 ---
-const { windowDataAttr, title } = Astro.props;
+const { windowDataAttr, title, windowIcon } = Astro.props;
 ---
 
 <style>
@@ -27,7 +27,7 @@ const { windowDataAttr, title } = Astro.props;
     box-shadow: 0px 2px #000;
     padding-top: 5px;
     padding-bottom: 5px;
-    height: 1.5rem;
+    height: 1.7rem;
     display: flex;
     width: 100%;
   }
@@ -39,9 +39,13 @@ const { windowDataAttr, title } = Astro.props;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 0px 10px;
+    padding: 0px 5px;
   }
-  .close-button {
+  .title-icon {
+    margin-right: 5px;
+  }
+  .close-button,
+  .minimize-button {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -50,24 +54,30 @@ const { windowDataAttr, title } = Astro.props;
     color: #000;
     width: 15px;
     height: 15px;
+    margin-left: 5px;
+    padding: 0.5px;
     box-shadow: 1px 1px 1px black, -0.5px -0.5px 1px white;
   }
-  .close-button:hover {
+  .close-button:hover,
+  .minimize-button:hover {
     cursor: pointer;
   }
   .content {
     box-shadow: inset 2px 2px 2px black;
     line-height: 1.5rem;
     flex-grow: 1;
+    display: flex;
     padding: 10px;
   }
 </style>
 
-<div class="window" data-window={windowDataAttr}>
+<div class="window" data-window={windowDataAttr} data-title={title} data-icon={windowIcon}>
   <div class="top-bar" data-title={windowDataAttr}>
     <div class="title">
+      <img class="title-icon" src={`/images/${windowIcon}`} alt="Icon for Title" srcset="" height="18px" width="18px" />
       <span>{title}</span>
       <div style="flex-grow: 1;"></div>
+      <div class="minimize-button" data-window={windowDataAttr}><b>-</b></div>
       <div class="close-button" data-window={windowDataAttr}><b>x</b></div>
     </div>
   </div>

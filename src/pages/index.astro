@@ -7,12 +7,15 @@ import ContactMe from "../components/Windows/ContactMe.astro";
 
 <script>
   import { moveWindow } from "../scripts/addMoveWindowHandler";
+  import { createTaskBarButton } from "../scripts/createTaskbarButton";
   import { moveWindowToFront } from "../scripts/moveWidnowToFrontHandler";
   import { toggleWindow } from "../scripts/toggleWindow";
   // Getting All the Windows
   const windows = document.querySelectorAll(".window");
   windows.forEach((windowDiv) => {
     const windowDataAttr = windowDiv.getAttribute("data-window") ?? "";
+    const windowName = windowDiv.getAttribute("data-title") ?? "";
+    const windowIcon = windowDiv.getAttribute("data-icon") ?? "";
     // Making Windows Dragable
     moveWindow(windowDataAttr);
     // Move Window to Front on Click
@@ -20,8 +23,15 @@ import ContactMe from "../components/Windows/ContactMe.astro";
     // Adding Toggle to Close Button
     const closeButton = windowDiv.querySelector(".close-button");
     if (closeButton) {
-      closeButton.addEventListener("click", (e) => toggleWindow(windowDataAttr));
+      closeButton.addEventListener("click", (e) => toggleWindow(windowDataAttr, true));
     }
+    // Adding Toggle to Minimize Button
+    const minimizeButton = windowDiv.querySelector(".minimize-button");
+    if (minimizeButton) {
+      minimizeButton.addEventListener("click", (e) => toggleWindow(windowDataAttr));
+    }
+    // Creating Taskbar Button
+    createTaskBarButton(windowName, windowIcon, windowDataAttr);
   });
 </script>
 
