@@ -9,37 +9,8 @@ import Paint from "../components/Windows/Paint.astro";
 ---
 
 <script>
-  import { dragWindowHandler } from "../scripts/dragWindowHandler";
-  import { createButtons } from "../scripts/createButtons";
-  import { moveWindowToFront } from "../scripts/moveWidnowToFrontHandler";
-  import { windowEventHandler } from "../scripts/windowEventHandler";
-  import { initCanvas } from "../scripts/initCanvas";
-  // Getting All the Windows
-  const windows = document.querySelectorAll(".window");
-  windows.forEach((windowDiv) => {
-    const windowDataAttr = windowDiv.getAttribute("data-window") ?? "";
-    const windowName = windowDiv.getAttribute("data-title") ?? "";
-    const windowIcon = windowDiv.getAttribute("data-icon") ?? "";
-    // Making Windows Dragable
-    dragWindowHandler(windowDataAttr);
-    // Move Window to Front on Click
-    windowDiv.addEventListener("click", () => moveWindowToFront(windowDataAttr));
-    // Adding Toggle to Close Button
-    const closeButton = windowDiv.querySelector(".close-button");
-    if (closeButton) {
-      closeButton.addEventListener("click", () => windowEventHandler(windowDataAttr, "CLOSE"));
-    }
-    // Adding Toggle to Minimize Button
-    const minimizeButton = windowDiv.querySelector(".minimize-button");
-    if (minimizeButton) {
-      minimizeButton.addEventListener("click", () => windowEventHandler(windowDataAttr, "TOGGLE"));
-    }
-    // Creating Buttons for Taskbar and Start Menu
-    createButtons(windowName, windowIcon, windowDataAttr);
-  });
-  initCanvas();
-  // Initlal Setting
-  windowEventHandler("about_me", "SHOW");
+  import { init } from "../scripts/init";
+  init();
 </script>
 
 <Layout>

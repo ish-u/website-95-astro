@@ -12,6 +12,8 @@ export function initCanvas() {
       let mouseX = 0;
       let mouseY = 0;
       let isDrawing = false;
+      // ctx.canvas.width = canvas.parentElement.clientWidth;
+      // ctx.canvas.height = canvas.parentElement.clientHeight;
       canvas.addEventListener("mousedown", (e) => {
         const bounding = canvas.getBoundingClientRect();
         mouseX = e.clientX - bounding.left;

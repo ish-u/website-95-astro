@@ -1,3 +1,4 @@
+import { initCanvasSize } from "./initCanvasSize";
 import { moveWindowToFront } from "./moveWidnowToFrontHandler";
 
 export function windowEventHandler(windowDataAttr: string, event: "SHOW" | "TOGGLE" | "CLOSE") {
@@ -12,6 +13,7 @@ export function windowEventHandler(windowDataAttr: string, event: "SHOW" | "TOGG
       windowDiv.style.display = "flex";
       taskbarButton.className = "taskbar-button active";
       moveWindowToFront(windowDataAttr);
+      initCanvasSize();
       return;
     case "TOGGLE":
       if (windowDiv.style.display === "none") {

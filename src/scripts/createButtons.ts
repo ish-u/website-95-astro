@@ -46,6 +46,7 @@ export function createButtons(windowName: string, windowIcon: string, windowData
 
     const image = document.createElement("img");
     image.src = `/images/${windowIcon}`;
+    image.alt = windowName + " icon";
 
     button.appendChild(image);
     button.appendChild(name);
@@ -88,6 +89,7 @@ export function createButtons(windowName: string, windowIcon: string, windowData
 
     const image = document.createElement("img");
     image.src = `/images/${windowIcon}`;
+    image.alt = windowName + " icon";
     image.style.marginRight = "10px";
 
     button.appendChild(image);
