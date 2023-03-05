@@ -7,10 +7,15 @@ import ContactMe from "../components/Windows/ContactMe.astro";
 
 <script>
   import { moveWindow } from "../scripts/addMoveWindowHandler";
+  import { moveWindowToFront } from "../scripts/moveWidnowToFrontHandler";
   // Getting All the Windows
   const windows = document.querySelectorAll(".window");
-  // Making Windows Dragable
-  windows.forEach((windowDiv) => moveWindow(windowDiv.getAttribute("data-window") ?? ""));
+  windows.forEach((windowDiv) => {
+    // Making Windows Dragable
+    moveWindow(windowDiv.getAttribute("data-window") ?? "");
+    // Move Window to Front on Click
+    windowDiv.addEventListener("click", () => moveWindowToFront(windowDiv.getAttribute("data-window") ?? ""));
+  });
 </script>
 
 <Layout>

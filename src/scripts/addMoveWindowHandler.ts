@@ -1,3 +1,5 @@
+import { moveWindowToFront } from "./moveWidnowToFrontHandler";
+
 export function moveWindow(windowName: string) {
   let pos1 = 0,
     pos2 = 0,
@@ -16,6 +18,8 @@ export function moveWindow(windowName: string) {
     // get the mouse cursor position at startup:
     pos3 = e.clientX;
     pos4 = e.clientY;
+    // Move Window To Front on start dragging
+    moveWindowToFront(windowName);
     document.onmouseup = closeDragElement;
     // call a function whenever the cursor moves:
     document.onmousemove = elementDrag;
