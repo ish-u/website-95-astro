@@ -3,8 +3,10 @@
   src: url("/fonts/MS_Sans_Serif_8pt.ttf") format("truetype");
 }
 
-html {
+html,
+body {
   font-family: MS;
   background-color: #008080;
   overflow: hidden;
+  margin: 0px;
 }

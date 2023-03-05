@@ -1,0 +1,28 @@
+<style>
+  #loading-screen {
+    z-index: 2000000;
+    position: relative;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #008080;
+  }
+  #loading-screen img {
+    height: 75%;
+  }
+</style>
+
+<script>
+  setTimeout(() => {
+    const loadingScreen = document.getElementById("loading-screen");
+    if (loadingScreen) {
+      loadingScreen.style.display = "none";
+    }
+  }, 1500);
+</script>
+
+<div id="loading-screen">
+  <img src="/images/loading.webp" alt="Loading Screen" srcset="" />
+</div>
