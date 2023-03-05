@@ -8,13 +8,20 @@ import ContactMe from "../components/Windows/ContactMe.astro";
 <script>
   import { moveWindow } from "../scripts/addMoveWindowHandler";
   import { moveWindowToFront } from "../scripts/moveWidnowToFrontHandler";
+  import { toggleWindow } from "../scripts/toggleWindow";
   // Getting All the Windows
   const windows = document.querySelectorAll(".window");
   windows.forEach((windowDiv) => {
+    const windowDataAttr = windowDiv.getAttribute("data-window") ?? "";
     // Making Windows Dragable
-    moveWindow(windowDiv.getAttribute("data-window") ?? "");
+    moveWindow(windowDataAttr);
     // Move Window to Front on Click
-    windowDiv.addEventListener("click", () => moveWindowToFront(windowDiv.getAttribute("data-window") ?? ""));
+    windowDiv.addEventListener("click", () => moveWindowToFront(windowDataAttr));
+    // Adding Toggle to Close Button
+    const closeButton = windowDiv.querySelector(".close-button");
+    if (closeButton) {
+      closeButton.addEventListener("click", (e) => toggleWindow(windowDataAttr));
+    }
   });
 </script>
 

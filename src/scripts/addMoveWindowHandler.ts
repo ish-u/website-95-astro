@@ -18,8 +18,6 @@ export function moveWindow(windowName: string) {
     // get the mouse cursor position at startup:
     pos3 = e.clientX;
     pos4 = e.clientY;
-    // Move Window To Front on start dragging
-    moveWindowToFront(windowName);
     document.onmouseup = closeDragElement;
     // call a function whenever the cursor moves:
     document.onmousemove = elementDrag;
@@ -28,6 +26,8 @@ export function moveWindow(windowName: string) {
   function elementDrag(e: MouseEvent) {
     e = e || window.event;
     e.preventDefault();
+    // Move Window To Front on start dragging
+    moveWindowToFront(windowName);
     // calculate the new cursor position:
     pos1 = pos3 - e.clientX;
     pos2 = pos4 - e.clientY;
