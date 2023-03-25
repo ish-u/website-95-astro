@@ -2,8 +2,43 @@
 import Window from "./Window.astro";
 ---
 
+<style>
+  a,
+  a:visited {
+    color: blue;
+  }
+  #footer {
+    position: absolute;
+    bottom: 5px;
+    font-size: small;
+    font-weight: 100;
+    font-style: italic;
+  }
+</style>
+
 <Window windowDataAttr="about_me" title="About Me" windowIcon="Info (gray).ICO">
-  <div style="margin:10px 0px">hello internet, I am Anmol. I am a Full-Stack Developer.</div>
+  <div style="margin:10px 0px">
+    hello internet, I am Anmol. I am a <b> Full-Stack Developer</b>.
+  </div>
+
+  <div>
+    I like :
+
+    <ul>
+      <li>Computer Science</li>
+      <li>
+        creating
+        <a href="https://github.com/ish-u"> software</a>
+      </li>
+      <li>
+        taking
+        <a href="https://www.instagram.com/user_no_01/"> pictures/videos</a>
+      </li>
+      <li>listening to music</li>
+      <li>Internet</li>
+    </ul>
+  </div>
+
   <div>
     Remeber fellow internet user:-
 
@@ -13,10 +48,14 @@ import Window from "./Window.astro";
         <br />
         After all, you are alive, so you will always have the chance to be happy.
         <br />
-        As long as the Sun, the Moon, and the Earth exist, everything will be all right.
+        As long as the Sun, the Moon, and the Earth exist, everything will be all
+        right.
         <p><em> -Yui Ikari, Neon Genesis Evangelion</em></p>
       </b>
     </blockquote>
   </div>
-  <div id="instructions">Click on the Start Menu for Education, Projects and Contact Info.</div>
+  <div id="footer">
+    <div>Click on Start Menu for more</div>
+    <div><a href="/simple">simple-version</a></div>
+  </div>
 </Window>
