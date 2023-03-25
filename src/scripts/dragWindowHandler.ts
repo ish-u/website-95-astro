@@ -7,8 +7,12 @@ export function dragWindowHandler(windowDataAttr: string) {
     pos3 = 0,
     pos4 = 0;
 
-  const windowDiv: HTMLDivElement | null = document.querySelector(`[data-window=${windowDataAttr}]`);
-  const windowTitleBar: HTMLDivElement | null = windowDiv ? windowDiv.querySelector(`[data-title=${windowDataAttr}]`) : null;
+  const windowDiv: HTMLDivElement | null = document.querySelector(
+    `[data-window=${windowDataAttr}]`
+  );
+  const windowTitleBar: HTMLDivElement | null = windowDiv
+    ? windowDiv.querySelector(`[data-title=${windowDataAttr}]`)
+    : null;
   if (windowDiv && windowTitleBar) {
     windowTitleBar.onmousedown = dragMouseDown;
   }
@@ -36,7 +40,10 @@ export function dragWindowHandler(windowDataAttr: string) {
     pos4 = e.clientY;
     // set the element's new position:
     if (windowDiv !== null) {
-      let offsetLeft = windowDiv.offsetLeft - pos1 > e.clientX ? windowDiv.offsetLeft - e.clientY : windowDiv.offsetLeft - pos1;
+      let offsetLeft =
+        windowDiv.offsetLeft - pos1 > e.clientX
+          ? windowDiv.offsetLeft - e.clientY
+          : windowDiv.offsetLeft - pos1;
       windowDiv.style.top = windowDiv.offsetTop - pos2 + "px";
       windowDiv.style.left = offsetLeft + "px";
     }

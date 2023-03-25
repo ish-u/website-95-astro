@@ -1,6 +1,10 @@
 import { windowEventHandler } from "./windowEventHandler";
 
-export function createButtons(windowName: string, windowIcon: string, windowDataAttr: string) {
+export function createButtons(
+  windowName: string,
+  windowIcon: string,
+  windowDataAttr: string
+) {
   const taskbar = document.getElementById("taskbar");
   const startMenu = document.getElementById("start-menu");
 
@@ -53,7 +57,9 @@ export function createButtons(windowName: string, windowIcon: string, windowData
     button.appendChild(styleSheet);
 
     // adding windowEventHandler
-    button.addEventListener("click", () => windowEventHandler(windowDataAttr, "TOGGLE"));
+    button.addEventListener("click", () =>
+      windowEventHandler(windowDataAttr, "TOGGLE")
+    );
 
     taskbar.appendChild(button);
   }
@@ -97,7 +103,9 @@ export function createButtons(windowName: string, windowIcon: string, windowData
     button.appendChild(styleSheet);
 
     // adding windowEventHandler
-    button.addEventListener("click", () => windowEventHandler(windowDataAttr, "SHOW"));
+    button.addEventListener("click", () =>
+      windowEventHandler(windowDataAttr, "SHOW")
+    );
 
     startMenu.appendChild(button);
   }

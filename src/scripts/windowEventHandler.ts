@@ -1,10 +1,19 @@
 import { initCanvasSize } from "./initCanvasSize";
 import { moveWindowToFront } from "./moveWidnowToFrontHandler";
 
-export function windowEventHandler(windowDataAttr: string, event: "SHOW" | "TOGGLE" | "CLOSE") {
-  const windowDiv: HTMLDivElement | null = document.querySelector(`[data-window=${windowDataAttr}]`);
-  const taskbarButton = document.querySelector(`[data-window-taskbar=${windowDataAttr}]`);
-  const startmenuButton = document.querySelector(`[data-window-menu=${windowDataAttr}]`);
+export function windowEventHandler(
+  windowDataAttr: string,
+  event: "SHOW" | "TOGGLE" | "CLOSE"
+) {
+  const windowDiv: HTMLDivElement | null = document.querySelector(
+    `[data-window=${windowDataAttr}]`
+  );
+  const taskbarButton = document.querySelector(
+    `[data-window-taskbar=${windowDataAttr}]`
+  );
+  const startmenuButton = document.querySelector(
+    `[data-window-menu=${windowDataAttr}]`
+  );
   if (!windowDiv || !taskbarButton || !startmenuButton) {
     return;
   }

@@ -13,16 +13,22 @@ export function init() {
     // Making Windows Dragable
     dragWindowHandler(windowDataAttr);
     // Move Window to Front on Click
-    windowDiv.addEventListener("click", () => moveWindowToFront(windowDataAttr));
+    windowDiv.addEventListener("click", () =>
+      moveWindowToFront(windowDataAttr)
+    );
     // Adding Toggle to Close Button
     const closeButton = windowDiv.querySelector(".close-button");
     if (closeButton) {
-      closeButton.addEventListener("click", () => windowEventHandler(windowDataAttr, "CLOSE"));
+      closeButton.addEventListener("click", () =>
+        windowEventHandler(windowDataAttr, "CLOSE")
+      );
     }
     // Adding Toggle to Minimize Button
     const minimizeButton = windowDiv.querySelector(".minimize-button");
     if (minimizeButton) {
-      minimizeButton.addEventListener("click", () => windowEventHandler(windowDataAttr, "TOGGLE"));
+      minimizeButton.addEventListener("click", () =>
+        windowEventHandler(windowDataAttr, "TOGGLE")
+      );
     }
     // Creating Buttons for Taskbar and Start Menu
     createButtons(windowName, windowIcon, windowDataAttr);
