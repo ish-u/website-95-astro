@@ -1,5 +1,6 @@
 import { createButtons } from "./createButtons";
 import { dragWindowHandler } from "./dragWindowHandler";
+import { fetchSongDetails } from "./fetchSpotifyStatus";
 import { initCanvas } from "./initCanvas";
 import { moveWindowToFront } from "./moveWidnowToFrontHandler";
 import { windowEventHandler } from "./windowEventHandler";
@@ -33,7 +34,14 @@ export function init() {
     // Creating Buttons for Taskbar and Start Menu
     createButtons(windowName, windowIcon, windowDataAttr);
   });
+  // Initializing Canvas
   initCanvas();
-  // Initlal Setting
+  // Initial Fetch on Website Load
+  fetchSongDetails();
+  // Fetching Song Detials every 10 seconds
+  setInterval(async () => {
+    await fetchSongDetails();
+  }, 10000);
+  // Initlal Window
   windowEventHandler("about_me", "SHOW");
 }

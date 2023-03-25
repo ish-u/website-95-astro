@@ -1,4 +1,5 @@
 ---
+import SpotifyStatus from "./SpotifyStatus.astro";
 ---
 
 <style>
@@ -37,31 +38,6 @@
   }
 </style>
 
-<script is:inline>
-  // Fetch Now Playing Song on Spotify
-  const fetchSongDetails = async () => {
-    // Song Name
-    const song = await (await fetch("https://spotify-readme.ishu2.repl.co/nowPlaying/plainText")).json();
-    const title = song.name;
-    const artists = song.artists.join(", ");
-    const songNameEle = document.getElementById("song-name");
-    if (songNameEle) {
-      songNameEle.innerHTML = title + " - " + artists;
-    }
-    // Song Image
-    const songImageEle = document.getElementById("song-image");
-    if (songImageEle) {
-      songImageEle.src = "https://spotify-readme.ishu2.repl.co/nowPlaying/image?t=" + new Date().getMilliseconds();
-    }
-  };
-  // Initial Fetch on Website Load
-  fetchSongDetails();
-  // Fetching Song Detials every 10 seconds
-  setInterval(async () => {
-    await fetchSongDetails();
-  }, 10000);
-</script>
-
 <div id="social">
   <a href="https://github.com/ish-u" target="_blank">
     <div class="social-link">
@@ -75,12 +51,5 @@
       <span>Instagram</span>
     </div>
   </a>
-  <a href="https://spotify-readme.ishu2.repl.co/nowPlaying/url">
-    <div class="social-link">
-      <img id="song-image" src="/images/Music Disc 2.ico" alt="" />
-      <span>
-        <marquee id="song-name" width="50" height="20" behavior="scroll" direction="left" scrollamount="2"> Nothing</marquee>
-      </span>
-    </div>
-  </a>
+  <SpotifyStatus />
 </div>

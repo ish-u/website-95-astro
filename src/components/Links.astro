@@ -1,0 +1,38 @@
+---
+import SpotifyStatus from "./SpotifyStatus.astro";
+---
+
+<style>
+  * {
+    color: white;
+  }
+  a,
+  a:visited {
+    text-decoration: none;
+  }
+  .link-container {
+    height: 90vh;
+    width: 90vw;
+    padding-top: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    align-content: center;
+    flex-direction: column;
+    margin: 0 auto;
+  }
+  .link-container a {
+    padding: 0.5rem 0rem;
+  }
+</style>
+<div class="link-container">
+  <h2>Links</h2>
+  <a href="mailto:anmolgupta520@gmail.com">email</a>
+  <a href="https://github.com/ish-u">github</a>
+  <a href="https://www.linkedin.com/in/anmolgupta0/">linkedin</a>
+  <a href="https://twitter.com/UserNo0001">twitter</a>
+  <a href="https://www.instagram.com/user_no_01/">instagram</a>
+  <br />
+  <h4>Currently Playing</h4>
+  <SpotifyStatus />
+</div>

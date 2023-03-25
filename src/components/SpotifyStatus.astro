@@ -1,0 +1,52 @@
+<style>
+  .spotify-status {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    margin: 10px;
+  }
+  .song-image {
+    height: 32px;
+    width: 32px;
+  }
+  .song-name {
+    font-size: small;
+    margin-top: 10px;
+  }
+  a {
+    text-decoration: none;
+    color: white;
+  }
+
+  @media only screen and (max-width: 600px) {
+    .song-image {
+      height: 256px;
+      width: 256px;
+    }
+    .song-name {
+      margin-top: 25px;
+      font-size: 30px;
+      width: 75%;
+      height: 35px;
+      scroll-amount: 5;
+    }
+  }
+</style>
+
+<a href="https://spotify-readme.ishu2.repl.co/nowPlaying/url">
+  <div class="spotify-status">
+    <img class="song-image" src="/images/music.png" alt="" />
+    <marquee
+      class="song-name"
+      width="50"
+      height="20"
+      behavior="scroll"
+      direction="left"
+      scrollamount="3"
+    >
+      Nothing
+    </marquee>
+  </div>
+</a>

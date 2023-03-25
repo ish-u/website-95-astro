@@ -10,3 +10,18 @@ body {
   overflow: hidden;
   margin: 0px;
 }
+
+.desktop {
+  display: block;
+}
+.mobile {
+  display: none;
+}
+@media only screen and (max-width: 600px) {
+  .desktop {
+    display: none;
+  }
+  .mobile {
+    display: flex;
+  }
+}

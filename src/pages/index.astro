@@ -1,11 +1,8 @@
 ---
 import "../styles/style.css";
 import Layout from "../layouts/layout.astro";
-import AboutMe from "../components/Windows/AboutMe.astro";
-import ContactMe from "../components/Windows/ContactMe.astro";
-import Experience from "../components/Windows/Experience.astro";
-import Projects from "../components/Windows/Projects.astro";
-import Paint from "../components/Windows/Paint.astro";
+import DesktopLayout from "../layouts/desktop-layout.astro";
+import MobileLayout from "../layouts/mobile-layout.astro";
 ---
 
 <script>
@@ -14,9 +11,6 @@ import Paint from "../components/Windows/Paint.astro";
 </script>
 
 <Layout>
-  <AboutMe />
-  <Experience />
-  <Projects />
-  <Paint />
-  <ContactMe />
+  <DesktopLayout />
+  <MobileLayout />
 </Layout>
