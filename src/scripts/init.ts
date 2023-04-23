@@ -39,6 +39,7 @@ export function init() {
   // Initial Fetch on Website Load
   fetchSongDetails();
   // Fetching Song Detials every 10 seconds
+  fetchSongDetails();
   setInterval(async () => {
     await fetchSongDetails();
   }, 10000);
