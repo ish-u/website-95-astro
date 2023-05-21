@@ -41,6 +41,7 @@ export function windowEventHandler(
       windowDiv.style.display = "none";
       windowDiv.style.top = "5rem";
       windowDiv.style.left = "20rem";
+      resizeWindows(windowDataAttr);
       taskbarButton.classList.add("close");
       return;
     case "RESIZE":

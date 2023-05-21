@@ -51,5 +51,5 @@ export function init() {
     await fetchSongDetails();
   }, 10000);
   // Initlal Window
-  windowEventHandler("paint", "SHOW");
+  windowEventHandler("about_me", "SHOW");
 }

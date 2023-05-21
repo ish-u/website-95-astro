@@ -6,7 +6,6 @@ const { windowDataAttr, title, windowIcon, noPadding = false } = Astro.props;
   .window {
     display: flex;
     flex-direction: column;
-    /* justify-content: space-between; */
     min-width: 50rem;
     min-height: 35rem;
     max-width: 100%;
@@ -63,10 +62,11 @@ const { windowDataAttr, title, windowIcon, noPadding = false } = Astro.props;
     font-size: 12px;
     height: 15px;
     margin-left: 5px;
-    padding: 0.5px;
+    padding: 0.25px;
     box-shadow: 1px 1px 1px black, -0.5px -0.5px 1px white;
   }
   .close-button:hover,
+  .resize-button:hover,
   .minimize-button:hover {
     cursor: pointer;
   }
