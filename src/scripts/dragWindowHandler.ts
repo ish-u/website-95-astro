@@ -27,6 +27,7 @@ export function dragWindowHandler(windowDataAttr: string) {
     // get the mouse cursor position at startup:
     pos3 = e.clientX;
     pos4 = e.clientY;
+
     document.onmouseup = closeDragElement;
     // call a function whenever the cursor moves:
     document.onmousemove = elementDrag;
@@ -42,15 +43,6 @@ export function dragWindowHandler(windowDataAttr: string) {
     pos2 = pos4 - e.clientY;
     pos3 = e.clientX;
     pos4 = e.clientY;
-    // set the element's new position:
-    if (windowDiv !== null) {
-      let offsetLeft =
-        windowDiv.offsetLeft - pos1 > e.clientX
-          ? windowDiv.offsetLeft - e.clientY
-          : windowDiv.offsetLeft - pos1;
-      windowDiv.style.top = windowDiv.offsetTop - pos2 + "px";
-      windowDiv.style.left = offsetLeft + "px";
-    }
     if (
       windowDiv &&
       resizeButton &&
@@ -59,6 +51,17 @@ export function dragWindowHandler(windowDataAttr: string) {
       windowDiv.style.width = "50rem";
       windowDiv.style.height = "35rem";
       resizeButton?.classList.remove("maximize");
+      windowDiv.style.top = e.clientY + "px";
+      windowDiv.style.left = e.clientX / 2 + "px";
+    }
+    // set the element's new position:
+    if (windowDiv !== null) {
+      let offsetLeft =
+        windowDiv.offsetLeft - pos1 > e.clientX
+          ? windowDiv.offsetLeft - e.clientY
+          : windowDiv.offsetLeft - pos1;
+      windowDiv.style.top = windowDiv.offsetTop - pos2 + "px";
+      windowDiv.style.left = offsetLeft + "px";
     }
   }
 
