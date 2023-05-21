@@ -9,11 +9,22 @@ body {
   background-color: #008080;
   overflow: hidden;
   margin: 0px;
+  padding: 0;
 }
 
 .desktop {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
 }
+
+.window-area {
+  display: flex;
+  flex-grow: 1;
+  position: relative;
+}
+
 .mobile {
   display: none;
 }

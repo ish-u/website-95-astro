@@ -6,7 +6,11 @@ const { windowDataAttr, title, windowIcon, noPadding = false } = Astro.props;
   .window {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    /* justify-content: space-between; */
+    min-width: 50rem;
+    min-height: 35rem;
+    max-width: 100%;
+    max-height: 100%;
     width: 50rem;
     height: 35rem;
     position: absolute;
@@ -21,6 +25,8 @@ const { windowDataAttr, title, windowIcon, noPadding = false } = Astro.props;
     margin: 0 auto;
     box-shadow: 2px 2px 2px black, -1px -1px 1px white;
     box-sizing: border-box;
+    resize: both;
+    overflow: auto;
   }
   .top-bar {
     background-color: #b5b3b3;
@@ -45,7 +51,8 @@ const { windowDataAttr, title, windowIcon, noPadding = false } = Astro.props;
     margin-right: 5px;
   }
   .close-button,
-  .minimize-button {
+  .minimize-button,
+  .resize-button {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -53,6 +60,7 @@ const { windowDataAttr, title, windowIcon, noPadding = false } = Astro.props;
     background-color: #b5b3b3;
     color: #000;
     width: 15px;
+    font-size: 12px;
     height: 15px;
     margin-left: 5px;
     padding: 0.5px;
@@ -77,14 +85,34 @@ const { windowDataAttr, title, windowIcon, noPadding = false } = Astro.props;
   }
 </style>
 
-<div style="display:none" class="window" data-window={windowDataAttr} data-title={title} data-icon={windowIcon}>
+<div
+  style="display:none"
+  class="window"
+  data-window={windowDataAttr}
+  data-title={title}
+  data-icon={windowIcon}
+>
   <div class="top-bar" data-title={windowDataAttr}>
     <div class="title">
-      <img class="title-icon" src={`/images/${windowIcon}`} alt="Icon for Title" srcset="" height="18px" width="18px" />
+      <img
+        class="title-icon"
+        src={`/images/${windowIcon}`}
+        alt="Icon for Title"
+        srcset=""
+        height="18px"
+        width="18px"
+      />
       <span>{title}</span>
       <div style="flex-grow: 1;"></div>
-      <div class="minimize-button" data-window={windowDataAttr}><b>-</b></div>
-      <div class="close-button" data-window={windowDataAttr}><b>x</b></div>
+      <div class="minimize-button" data-window={windowDataAttr}>
+        <b>&#128469;</b>
+      </div>
+      <div class="resize-button" data-window={windowDataAttr}>
+        <b>&#128470;</b>
+      </div>
+      <div class="close-button" data-window={windowDataAttr}>
+        <b>&#x2715;</b>
+      </div>
     </div>
   </div>
   {

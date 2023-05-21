@@ -1,9 +1,10 @@
 import { initCanvasSize } from "./initCanvasSize";
 import { moveWindowToFront } from "./moveWidnowToFrontHandler";
+import { resizeWindows } from "./resizeWindow";
 
 export function windowEventHandler(
   windowDataAttr: string,
-  event: "SHOW" | "TOGGLE" | "CLOSE"
+  event: "SHOW" | "TOGGLE" | "CLOSE" | "RESIZE"
 ) {
   const windowDiv: HTMLDivElement | null = document.querySelector(
     `[data-window=${windowDataAttr}]`
@@ -41,6 +42,9 @@ export function windowEventHandler(
       windowDiv.style.top = "5rem";
       windowDiv.style.left = "20rem";
       taskbarButton.classList.add("close");
+      return;
+    case "RESIZE":
+      resizeWindows(windowDataAttr);
       return;
   }
 }

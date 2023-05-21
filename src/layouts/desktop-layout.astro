@@ -1,5 +1,4 @@
 ---
-import LoadingScreen from "../components/LoadingScreen.astro";
 import ShortCuts from "../components/ShortCuts.astro";
 import StartMenu from "../components/StartMenu.astro";
 import TaskBar from "../components/TaskBar.astro";
@@ -11,13 +10,15 @@ import Projects from "../components/Windows/Projects.astro";
 ---
 
 <div class="desktop">
-  <AboutMe />
-  <Experience />
-  <Projects />
-  <Paint />
-  <ContactMe />
-  <ShortCuts />
-  <StartMenu />
+  <div class="window-area">
+    <AboutMe />
+    <Experience />
+    <Projects />
+    <Paint />
+    <ContactMe />
+    <ShortCuts />
+    <StartMenu />
+  </div>
   <TaskBar />
-  <LoadingScreen />
+  <!-- <LoadingScreen /> -->
 </div>

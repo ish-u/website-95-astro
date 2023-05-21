@@ -10,6 +10,10 @@ export function dragWindowHandler(windowDataAttr: string) {
   const windowDiv: HTMLDivElement | null = document.querySelector(
     `[data-window=${windowDataAttr}]`
   );
+  const resizeButton = document.querySelector(
+    `.resize-button[data-window=${windowDataAttr}]`
+  );
+  console.log(resizeButton);
   const windowTitleBar: HTMLDivElement | null = windowDiv
     ? windowDiv.querySelector(`[data-title=${windowDataAttr}]`)
     : null;
@@ -46,6 +50,15 @@ export function dragWindowHandler(windowDataAttr: string) {
           : windowDiv.offsetLeft - pos1;
       windowDiv.style.top = windowDiv.offsetTop - pos2 + "px";
       windowDiv.style.left = offsetLeft + "px";
+    }
+    if (
+      windowDiv &&
+      resizeButton &&
+      resizeButton?.classList.contains("maximize")
+    ) {
+      windowDiv.style.width = "50rem";
+      windowDiv.style.height = "35rem";
+      resizeButton?.classList.remove("maximize");
     }
   }
 
