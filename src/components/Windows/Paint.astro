@@ -37,7 +37,7 @@ const defaultColors = [
   .paint {
     height: 100%;
     width: 100%;
-    border: 1px solid true;
+    position: relative;
   }
 
   #paint-title {
@@ -46,29 +46,43 @@ const defaultColors = [
   }
 
   .paint-area {
-    height: 85%;
+    position: relative;
     width: 100%;
-    display: flex;
+    height: calc(100% - 64px);
+  }
+  .paint-canvas {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 128px;
+    overflow: auto;
+    margin-top: 2.5px;
+    margin-left: 2.5px;
+  }
+
+  canvas {
+    display: block;
   }
 
   #paint-options {
-    width: 15%;
-    height: 100%;
+    width: 128px;
+    height: calc(100% - 64px);
+    position: absolute;
+    left: 0;
     background: #b5b3b3;
     border-top: 2px solid grey;
     border-bottom: 2px solid grey;
     box-sizing: border-box;
+    z-index: 10;
+    box-shadow: 2px 0px 2px black;
   }
-  .paint-canvas {
-    box-shadow: inset 2px 2px 2px black;
-    flex-grow: 1;
-    overflow: hidden;
-    border-right: 5px solid #b5b3b3;
-  }
-
   #paint-colors {
-    height: calc(15%);
+    height: 64px;
     background: #b5b3b3;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -179,66 +193,91 @@ const defaultColors = [
   if (canvas) {
     const ctx = canvas.getContext("2d");
     if (ctx && canvas.parentElement) {
-      ctx.canvas.width = canvas.parentElement.clientWidth;
-      ctx.canvas.height = canvas.parentElement.clientHeight;
+      ctx.canvas.width = window.innerWidth;
+      ctx.canvas.height = window.innerHeight;
     }
   }
 </script>
 
-<Window title="Paint" windowDataAttr="paint" windowIcon="Paint.ico" noPadding={true}>
+<Window
+  title="Paint"
+  windowDataAttr="paint"
+  windowIcon="Paint.ico"
+  noPadding={true}
+>
   <div class="paint">
-    <div class="paint-area">
-      <div id="paint-options">
-        <div id="stroke-menu">
-          {
-            [3, 6, 9].map((stroke) => (
-              <div class={`stroke-option  ${stroke === 3 ? "stroke-option-selected" : ""}`} data-stroke={stroke}>
-                <svg height="10" width="90">
-                  <line x1="0" y1="0" x2="90" y2="0" style={`stroke: rgb(0, 0, 0); stroke-width: ${stroke}`} />
-                </svg>
-              </div>
-            ))
-          }
-        </div>
-        <div>
-          <div id="eraser">
-            <svg style="color: white" xmlns="http://www.w3.org/2000/svg" height="32" width="32" viewBox="0 0 256 256"
-              ><rect width="256" height="256" fill="none"></rect><line
-                x1="91.5"
-                y1="99.5"
-                x2="159.4"
-                y2="167.4"
-                fill="none"
-                stroke="#000"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="24"></line><path
-                d="M216,215.8H72.1L35,178.7a15.9,15.9,0,0,1,0-22.6L148.1,43a15.9,15.9,0,0,1,22.6,0L216,88.2a16.2,16.2,0,0,1,0,22.7L111,215.8"
-                fill="white"
-                stroke="#000"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="24"></path></svg
+    <div id="paint-options">
+      <div id="stroke-menu">
+        {
+          [3, 6, 9].map((stroke) => (
+            <div
+              class={`stroke-option  ${
+                stroke === 3 ? "stroke-option-selected" : ""
+              }`}
+              data-stroke={stroke}
             >
-          </div>
-        </div>
+              <svg height="10" width="90">
+                <line
+                  x1="0"
+                  y1="0"
+                  x2="90"
+                  y2="0"
+                  style={`stroke: rgb(0, 0, 0); stroke-width: ${stroke}`}
+                />
+              </svg>
+            </div>
+          ))
+        }
       </div>
+      <div id="eraser">
+        <svg
+          style="color: white"
+          xmlns="http://www.w3.org/2000/svg"
+          height="32"
+          width="32"
+          viewBox="0 0 256 256"
+          ><rect width="256" height="256" fill="none"></rect><line
+            x1="91.5"
+            y1="99.5"
+            x2="159.4"
+            y2="167.4"
+            fill="none"
+            stroke="#000"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="24"></line><path
+            d="M216,215.8H72.1L35,178.7a15.9,15.9,0,0,1,0-22.6L148.1,43a15.9,15.9,0,0,1,22.6,0L216,88.2a16.2,16.2,0,0,1,0,22.7L111,215.8"
+            fill="white"
+            stroke="#000"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="24"></path></svg
+        >
+      </div>
+    </div>
+    <div class="paint-area">
       <div class="paint-canvas">
         <canvas id="canvas" height="100" width="100"></canvas>
       </div>
     </div>
-    <div id="paint-colors">
-      <div id="color-switcher">
-        <div id="color-one"></div>
-        <div id="color-two"></div>
-      </div>
-      <div id="color-list">
-        {
-          defaultColors.map((color) => {
-            return <div class="colors" data-color={color} style={`background: ${color};`} />;
-          })
-        }
-      </div>
+  </div>
+  <div id="paint-colors">
+    <div id="color-switcher">
+      <div id="color-one"></div>
+      <div id="color-two"></div>
+    </div>
+    <div id="color-list">
+      {
+        defaultColors.map((color) => {
+          return (
+            <div
+              class="colors"
+              data-color={color}
+              style={`background: ${color};`}
+            />
+          );
+        })
+      }
     </div>
   </div>
 </Window>

@@ -3,8 +3,8 @@ export function initCanvasSize() {
   if (canvas) {
     const ctx = canvas.getContext("2d");
     if (ctx && canvas.parentElement && !ctx.canvas.width) {
-      ctx.canvas.width = canvas.parentElement.clientWidth;
-      ctx.canvas.height = canvas.parentElement.clientHeight;
+      ctx.canvas.width = 1024;
+      ctx.canvas.height = 768;
     }
   }
 }
