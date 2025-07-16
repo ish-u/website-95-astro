@@ -22,7 +22,9 @@ const { windowDataAttr, title, windowIcon, noPadding = false } = Astro.props;
     border-width: 0px 5px 5px 5px;
     color: black;
     margin: 0 auto;
-    box-shadow: 2px 2px 2px black, -1px -1px 1px white;
+    box-shadow:
+      2px 2px 2px black,
+      -1px -1px 1px white;
     box-sizing: border-box;
     resize: both;
     overflow: auto;
@@ -62,12 +64,17 @@ const { windowDataAttr, title, windowIcon, noPadding = false } = Astro.props;
     height: 15px;
     margin-left: 5px;
     padding: 0.25px;
-    box-shadow: 1px 1px 1px black, -0.5px -0.5px 1px white;
+    box-shadow:
+      1px 1px 1px black,
+      -0.5px -0.5px 1px white;
   }
   .close-button:hover,
   .resize-button:hover,
   .minimize-button:hover {
     cursor: pointer;
+  }
+  .minimize-button b {
+    padding-bottom: 4px;
   }
   .shadow {
     box-shadow: inset 2px 2px 2px black;
@@ -104,10 +111,10 @@ const { windowDataAttr, title, windowIcon, noPadding = false } = Astro.props;
       <span>{title}</span>
       <div style="flex-grow: 1;"></div>
       <div class="minimize-button" data-window={windowDataAttr}>
-        <b>&#128469;</b>
+        <b>&UnderBar;</b>
       </div>
       <div class="resize-button" data-window={windowDataAttr}>
-        <b>&#128470;</b>
+        <b>&#x2610;</b>
       </div>
       <div class="close-button" data-window={windowDataAttr}>
         <b>&#x2715;</b>
