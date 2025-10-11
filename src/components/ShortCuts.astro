@@ -3,7 +3,7 @@ import SpotifyStatus from "./SpotifyStatus.astro";
 ---
 
 <style>
-  #social {
+  #shortcuts {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -15,7 +15,7 @@ import SpotifyStatus from "./SpotifyStatus.astro";
     color: white;
     margin-left: 5px;
   }
-  .social-link {
+  .shortcut {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -23,29 +23,39 @@ import SpotifyStatus from "./SpotifyStatus.astro";
     align-content: center;
     margin: 10px;
   }
-  #social a {
+  #shortcuts a {
     text-decoration: none;
     color: white;
   }
-  #social img {
+  #shortcuts img {
     height: 32px;
     width: 32px;
   }
-  .social-link span {
+  .shortcut span {
     font-size: small;
     margin-top: 10px;
   }
 </style>
 
-<div id="social">
+<script>
+  import { windowEventHandler } from "../scripts/windowEventHandler";
+  const shaderShortcut = document.getElementById("shader-shortcut") ?? "";
+  if (shaderShortcut) {
+    shaderShortcut.addEventListener("click", () =>
+      windowEventHandler("shaders", "SHOW")
+    );
+  }
+</script>
+
+<div id="shortcuts">
   <a href="https://github.com/ish-u" target="_blank">
-    <div class="social-link">
+    <div class="shortcut">
       <img src="/images/Book Disc.ico" alt="Link to github - ish_u" />
       <span>GitHub</span>
     </div>
   </a>
   <a href="https://www.instagram.com/anmol_dot_ninja/" target="_blank">
-    <div class="social-link">
+    <div class="shortcut">
       <img
         src="/images/Painting.ico"
         alt="Link to instagram - anmol_dot_ninja"
@@ -53,5 +63,9 @@ import SpotifyStatus from "./SpotifyStatus.astro";
       <span>Instagram</span>
     </div>
   </a>
+  <div class="shortcut" id="shader-shortcut">
+    <img src="/images/Beizer.ico" alt="Open shaders window" />
+    <span>Shaders</span>
+  </div>
   <SpotifyStatus />
 </div>
