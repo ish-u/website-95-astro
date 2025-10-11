@@ -14,8 +14,14 @@ import Window from "./Window.astro";
     font-weight: 100;
     font-style: italic;
   }
+  #shader-canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+    flex-grow: 1;
+  }
 </style>
 
 <Window windowDataAttr="shaders" title="Shaders" windowIcon="Beizer.ico">
-  <div><em>Shaders</em></div>
+  <canvas id="shader-canvas" height="100" width="100"></canvas>
 </Window>
