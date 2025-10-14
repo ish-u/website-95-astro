@@ -15,13 +15,35 @@ import Window from "./Window.astro";
     box-shadow: inset 2px 2px 2px black;
     padding: 5px;
   }
+  #shader-editor-app-bar {
+    background-color: #b5b3b3;
+    display: flex;
+  }
+  #shader-editor-app-bar div {
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-bottom: 2.5px;
+    font-size: small;
+  }
 </style>
+
 <script>
+  import { updateShader } from "../../scripts/initShadersCanvas";
+
   const editor = document.getElementById(
     "shader-editor-textarea"
   ) as HTMLTextAreaElement;
   if (editor) {
     editor.textContent = (window as any)?.currentFragmentShaderSource;
+  }
+
+  const saveButton = document.getElementById("shader-editor-save-button");
+  if (saveButton && editor) {
+    saveButton.addEventListener("click", (e) => {
+      e.stopPropagation();
+      (window as any).currentFragmentShaderSource = editor.value;
+      updateShader();
+    });
   }
 </script>
 
@@ -32,5 +54,8 @@ import Window from "./Window.astro";
   showInStart={false}
   noPadding
 >
+  <div id="shader-editor-app-bar" slot="app-bar">
+    <div id="shader-editor-save-button"><u>S</u>ave</div>
+  </div>
   <textarea id="shader-editor-textarea" autofocus></textarea>
 </Window>

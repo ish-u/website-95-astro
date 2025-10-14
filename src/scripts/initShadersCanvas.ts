@@ -11,8 +11,6 @@ let timeLocation: WebGLUniformLocation | null;
 let mouseX: number = 0;
 let mouseY: number = 0;
 
-let currentFragmentShaderSource: string = SHADERS[0];
-
 const vertexShaderSource = `#version 300 es
 
 in vec4 a_position;
@@ -121,6 +119,7 @@ function render(time: GLfloat) {
 }
 
 function initShader(gl: WebGL2RenderingContext) {
+  console.log(gl);
   const fragmentShaderSource = `#version 300 es
 precision highp float;
 
@@ -163,7 +162,7 @@ void main() {
 }
 
 export function initShaderCanvas() {
-  (window as any).currentFragmentShaderSource = currentFragmentShaderSource;
+  (window as any).currentFragmentShaderSource = SHADERS[0];
   const canvas = document.getElementById("shader-canvas") as HTMLCanvasElement;
   if (canvas) {
     let gl = canvas.getContext("webgl2", { antialias: true });
@@ -189,5 +188,11 @@ export function initShaderCanvas() {
     canvas.addEventListener("mousemove", setMousePostion);
 
     requestAnimationFrame(render);
+  }
+}
+
+export function updateShader() {
+  if (GL_GLOBAL) {
+    initShader(GL_GLOBAL);
   }
 }

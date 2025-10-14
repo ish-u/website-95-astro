@@ -20,8 +20,35 @@ import Window from "./Window.astro";
     display: block;
     flex-grow: 1;
   }
+
+  #shaders-app-bar {
+    background-color: #b5b3b3;
+    display: flex;
+  }
+  #shaders-app-bar div {
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-bottom: 2.5px;
+    font-size: small;
+  }
 </style>
 
+<script>
+  import { windowEventHandler } from "../../scripts/windowEventHandler";
+
+  const openShaderEditorButton = document.getElementById("open-shader-editor");
+  if (openShaderEditorButton) {
+    openShaderEditorButton.addEventListener("click", (e) => {
+      e.stopPropagation();
+      windowEventHandler("shader-editor", "SHOW");
+    });
+  }
+</script>
+
 <Window windowDataAttr="shaders" title="Shaders" windowIcon="Beizer.ico">
+  <div id="shaders-app-bar" slot="app-bar">
+    <div><u>O</u>pen</div>
+    <div id="open-shader-editor"><u>E</u>dit</div>
+  </div>
   <canvas id="shader-canvas"></canvas>
 </Window>
