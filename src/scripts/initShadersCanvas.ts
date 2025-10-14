@@ -33,9 +33,11 @@ function setMousePostion(e: MouseEvent) {
 
 // Ref - https://webgl2fundamentals.org/webgl/lessons/webgl-shadertoy.html
 function resizeCanvasToDisplaySize(canvas: HTMLCanvasElement): boolean {
+  const dpr = window.devicePixelRatio || 1;
+
   // Lookup the size the browser is displaying the canvas in pixels
-  const displayWidth = canvas.clientWidth;
-  const displayHeight = canvas.clientHeight;
+  const displayWidth = Math.floor(canvas.clientWidth * dpr);
+  const displayHeight = Math.floor(canvas.clientHeight * dpr);
 
   // Check if the canvas is not the same size
   const needResize =
@@ -165,8 +167,8 @@ export function initShaderCanvas() {
   if (canvas) {
     let gl = canvas.getContext("webgl2", { antialias: true });
     GL_GLOBAL = gl;
-    canvas.width = canvas.clientWidth * window.devicePixelRatio || 1;
-    canvas.height = canvas.clientHeight * window.devicePixelRatio || 1;
+    // canvas.width = canvas.clientWidth * window.devicePixelRatio || 1;
+    // canvas.height = canvas.clientHeight * window.devicePixelRatio || 1;
 
     if (!gl) {
       return;
