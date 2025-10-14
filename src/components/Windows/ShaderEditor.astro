@@ -3,7 +3,7 @@ import Window from "./Window.astro";
 ---
 
 <style>
-  #editor {
+  #shader-editor-textarea {
     display: flex;
     flex-direction: row;
     width: 100%;
@@ -16,6 +16,14 @@ import Window from "./Window.astro";
     padding: 5px;
   }
 </style>
+<script>
+  const editor = document.getElementById(
+    "shader-editor-textarea"
+  ) as HTMLTextAreaElement;
+  if (editor) {
+    editor.textContent = (window as any)?.currentFragmentShaderSource;
+  }
+</script>
 
 <Window
   windowDataAttr="shader-editor"
@@ -24,5 +32,5 @@ import Window from "./Window.astro";
   showInStart={false}
   noPadding
 >
-  <textarea id="editor" autofocus></textarea>
+  <textarea id="shader-editor-textarea" autofocus></textarea>
 </Window>

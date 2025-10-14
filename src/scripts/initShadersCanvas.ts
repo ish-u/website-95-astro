@@ -130,7 +130,7 @@ uniform float iTime;
 
 out vec4 outColor;
 
-${currentFragmentShaderSource}
+${(window as any).currentFragmentShaderSource}
 
 void main() {
     mainImage(outColor, gl_FragCoord.xy);
@@ -163,6 +163,7 @@ void main() {
 }
 
 export function initShaderCanvas() {
+  (window as any).currentFragmentShaderSource = currentFragmentShaderSource;
   const canvas = document.getElementById("shader-canvas") as HTMLCanvasElement;
   if (canvas) {
     let gl = canvas.getContext("webgl2", { antialias: true });

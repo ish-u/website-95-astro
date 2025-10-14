@@ -1,5 +1,4 @@
-const DRACULA = `
-const float PI = 3.14;
+const DRACULA = `const float PI = 3.14;
 mat2 rotationMatrix(float angle)
 {
 	angle *= PI / 180.0;
