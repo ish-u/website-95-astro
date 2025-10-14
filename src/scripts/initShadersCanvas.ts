@@ -167,8 +167,6 @@ export function initShaderCanvas() {
   if (canvas) {
     let gl = canvas.getContext("webgl2", { antialias: true });
     GL_GLOBAL = gl;
-    // canvas.width = canvas.clientWidth * window.devicePixelRatio || 1;
-    // canvas.height = canvas.clientHeight * window.devicePixelRatio || 1;
 
     if (!gl) {
       return;

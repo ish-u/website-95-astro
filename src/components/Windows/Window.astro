@@ -1,5 +1,11 @@
 ---
-const { windowDataAttr, title, windowIcon, noPadding = false } = Astro.props;
+const {
+  windowDataAttr,
+  title,
+  windowIcon,
+  noPadding = false,
+  showInStart = true,
+} = Astro.props;
 ---
 
 <style>
@@ -93,7 +99,7 @@ const { windowDataAttr, title, windowIcon, noPadding = false } = Astro.props;
 
 <div
   style="display:none"
-  class="window"
+  class={"window" + (showInStart ? " show-in-start" : "")}
   data-window={windowDataAttr}
   data-title={title}
   data-icon={windowIcon}

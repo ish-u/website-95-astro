@@ -1,0 +1,28 @@
+---
+import Window from "./Window.astro";
+---
+
+<style>
+  #editor {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    border: none;
+    outline: none;
+    resize: none;
+    box-shadow: inset 2px 2px 2px black;
+    padding: 5px;
+  }
+</style>
+
+<Window
+  windowDataAttr="shader-editor"
+  title="Shader Editor"
+  windowIcon="Notepad writing.ico"
+  showInStart={false}
+  noPadding
+>
+  <textarea id="editor" autofocus></textarea>
+</Window>
