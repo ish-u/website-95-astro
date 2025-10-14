@@ -162,7 +162,7 @@ void main() {
 }
 
 export function initShaderCanvas() {
-  (window as any).currentFragmentShaderSource = SHADERS[0];
+  (window as any).currentFragmentShaderSource = SHADERS["FRACTAL_CIRCLES"];
   const canvas = document.getElementById("shader-canvas") as HTMLCanvasElement;
   if (canvas) {
     let gl = canvas.getContext("webgl2", { antialias: true });
