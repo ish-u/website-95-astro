@@ -4,7 +4,7 @@ const {
   title,
   windowIcon,
   noPadding = false,
-  showInStart = true,
+  hideInStart = false,
 } = Astro.props;
 ---
 
@@ -99,7 +99,7 @@ const {
 
 <div
   style="display:none"
-  class={"window" + (showInStart ? " show-in-start" : "")}
+  class={"window" + (hideInStart ? " hide-in-start" : "")}
   data-window={windowDataAttr}
   data-title={title}
   data-icon={windowIcon}

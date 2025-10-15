@@ -52,6 +52,11 @@ import Window from "./Window.astro";
       windowEventHandler("shader-editor", "SHOW");
     });
   }
+  const shaderTitle = document.querySelector("[data-window='shaders'] .title");
+  if (shaderTitle) {
+    shaderTitle.getElementsByTagName("span")[0].innerText =
+      "Shaders | FRACTAL_CIRCLES";
+  }
 
   const openShaderButton = document.getElementById("open-shader-programs-list");
   if (openShaderButton) {
@@ -153,11 +158,7 @@ import Window from "./Window.astro";
   }
 </script>
 
-<Window
-  windowDataAttr="shaders"
-  title="Shaders | FRACTAL_CIRCLES"
-  windowIcon="Beizer.ico"
->
+<Window windowDataAttr="shaders" title="Shaders" windowIcon="Beizer.ico">
   <div id="shaders-app-bar" slot="app-bar">
     <div id="open-shader-programs-list"><u>O</u>pen</div>
     <div id="open-shader-editor"><u>E</u>dit</div>

@@ -12,6 +12,9 @@ export function init() {
     const windowDataAttr = windowDiv.getAttribute("data-window") ?? "";
     const windowName = windowDiv.getAttribute("data-title") ?? "";
     const windowIcon = windowDiv.getAttribute("data-icon") ?? "";
+    const windowHideInStart = windowDiv.classList
+      .values()
+      .some((cls) => cls === "hide-in-start");
     // Making Windows Dragable
     dragWindowHandler(windowDataAttr);
     // Move Window to Front on Click
@@ -40,7 +43,7 @@ export function init() {
       );
     }
     // Creating Buttons for Taskbar and Start Menu
-    createButtons(windowName, windowIcon, windowDataAttr);
+    createButtons(windowName, windowIcon, windowDataAttr, windowHideInStart);
   });
   // Initializing Canvas
   initCanvas();

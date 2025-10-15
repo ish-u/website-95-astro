@@ -3,7 +3,8 @@ import { windowEventHandler } from "./windowEventHandler";
 export function createButtons(
   windowName: string,
   windowIcon: string,
-  windowDataAttr: string
+  windowDataAttr: string,
+  windowHideInStart: boolean
 ) {
   const taskbar = document.getElementById("taskbar");
   const startMenu = document.getElementById("start-menu");
@@ -106,6 +107,9 @@ export function createButtons(
     button.addEventListener("click", () =>
       windowEventHandler(windowDataAttr, "SHOW")
     );
+    if (windowHideInStart) {
+      button.style.display = "none";
+    }
 
     startMenu.appendChild(button);
   }
