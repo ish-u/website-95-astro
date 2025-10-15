@@ -31,9 +31,18 @@ import Window from "./Window.astro";
     margin-bottom: 2.5px;
     font-size: small;
   }
+  #shader-programs {
+    display: none;
+    grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
+    gap: 10px;
+    justify-items: center;
+    align-items: center;
+  }
 </style>
 
 <script>
+  import { updateShader } from "../../scripts/initShadersCanvas";
+  import SHADERS from "../../scripts/shaders";
   import { windowEventHandler } from "../../scripts/windowEventHandler";
 
   const openShaderEditorButton = document.getElementById("open-shader-editor");
@@ -43,12 +52,116 @@ import Window from "./Window.astro";
       windowEventHandler("shader-editor", "SHOW");
     });
   }
+
+  const openShaderButton = document.getElementById("open-shader-programs-list");
+  if (openShaderButton) {
+    openShaderButton.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const shaderPrograms = document.querySelector(
+        "#shader-programs"
+      ) as HTMLDivElement;
+      const shaderCanvas = document.querySelector(
+        "#shader-canvas"
+      ) as HTMLCanvasElement;
+      if (shaderPrograms) {
+        shaderPrograms.style.display = "grid";
+      }
+      if (shaderCanvas) {
+        shaderCanvas.style.display = "none";
+      }
+    });
+  }
+
+  const shaderPrograms = document.querySelector("#shader-programs");
+  if (shaderPrograms) {
+    for (const shaderName in SHADERS) {
+      const shaderProgramButton = document.createElement("div");
+      shaderProgramButton.classList.add("shader-program");
+      shaderProgramButton.setAttribute("data-shader-program", shaderName);
+
+      const shaderProgramStyle = `
+  .shader-program {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    margin: 10px;
+    cursor: pointer;
+  }
+  .shader-program img {
+    height: 32px;
+    width: 32px;
+  }
+  .shader-program span {
+    font-size: small;
+    margin-top: 10px;
+  }
+  `;
+      const styleSheet = document.createElement("style");
+      styleSheet.innerText = shaderProgramStyle;
+
+      const name = document.createElement("span");
+      name.innerText = shaderName;
+
+      const image = document.createElement("img");
+      image.src = "/images/Disc sheet.ico";
+      image.alt = shaderName;
+
+      shaderProgramButton.appendChild(styleSheet);
+      shaderProgramButton.appendChild(image);
+      shaderProgramButton.appendChild(name);
+      shaderPrograms.appendChild(shaderProgramButton);
+      shaderProgramButton.addEventListener("click", (e) => {
+        e.stopPropagation();
+        const shaderName = shaderProgramButton.getAttribute(
+          "data-shader-program"
+        );
+        (window as any).currentFragmentShaderSource =
+          SHADERS[shaderName as keyof typeof SHADERS];
+        updateShader();
+
+        const editor = document.getElementById(
+          "shader-editor-textarea"
+        ) as HTMLTextAreaElement;
+        if (editor) {
+          editor.textContent = SHADERS[shaderName as keyof typeof SHADERS];
+        }
+
+        const shaderTitle = document.querySelector(
+          "[data-window='shaders'] .title"
+        );
+        if (shaderTitle) {
+          shaderTitle.getElementsByTagName("span")[0].innerText =
+            "Shaders | " + shaderName;
+        }
+
+        const shaderPrograms = document.querySelector(
+          "#shader-programs"
+        ) as HTMLDivElement;
+        const shaderCanvas = document.querySelector(
+          "#shader-canvas"
+        ) as HTMLCanvasElement;
+        if (shaderPrograms) {
+          shaderPrograms.style.display = "none";
+        }
+        if (shaderCanvas) {
+          shaderCanvas.style.display = "block";
+        }
+      });
+    }
+  }
 </script>
 
-<Window windowDataAttr="shaders" title="Shaders" windowIcon="Beizer.ico">
+<Window
+  windowDataAttr="shaders"
+  title="Shaders | FRACTAL_CIRCLES"
+  windowIcon="Beizer.ico"
+>
   <div id="shaders-app-bar" slot="app-bar">
-    <div><u>O</u>pen</div>
+    <div id="open-shader-programs-list"><u>O</u>pen</div>
     <div id="open-shader-editor"><u>E</u>dit</div>
   </div>
+  <div id="shader-programs"></div>
   <canvas id="shader-canvas"></canvas>
 </Window>
