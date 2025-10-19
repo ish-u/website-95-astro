@@ -273,7 +273,26 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord )
      fragColor = vec4(color,1.0);
 }`;
 
+const NEW = `void mainImage( out vec4 fragColor, in vec2 fragCoord )
+{
+    // Inputs
+    // uniform vec3      iResolution;           // viewport resolution (in pixels)
+    // uniform float     iTime;                 // shader playback time (in seconds)
+    // uniform vec2      iMouse;                // mouse pixel coords. xy
+
+    // Normalized pixel coordinates (from 0 to 1)
+    vec2 uv = fragCoord/iResolution.xy;
+
+    // Time varying pixel color
+    vec3 col = 0.5 + 0.5*cos(iTime+uv.xyx+vec3(0,2,4));
+
+    // Output to screen
+    fragColor = vec4(col,1.0);
+}
+`;
+
 const SHADERS: Record<string, string> = {
+  NEW: NEW,
   DRACULA: DRACULA,
   GRID: GRID,
   SPEAK_TO_ME: SPEAK_TO_ME,

@@ -45,6 +45,30 @@ import Window from "./Window.astro";
   import SHADERS from "../../scripts/shaders";
   import { windowEventHandler } from "../../scripts/windowEventHandler";
 
+  const createNewShaderButton = document.getElementById("new-shader");
+  if (createNewShaderButton) {
+    createNewShaderButton.addEventListener("click", (e) => {
+      e.stopPropagation();
+      (window as any).currentFragmentShaderSource = SHADERS["NEW"];
+      updateShader();
+
+      const editor = document.getElementById(
+        "shader-editor-textarea"
+      ) as HTMLTextAreaElement;
+      if (editor) {
+        editor.value = SHADERS["NEW"];
+      }
+
+      const shaderTitle = document.querySelector(
+        "[data-window='shaders'] .title"
+      );
+      if (shaderTitle) {
+        shaderTitle.getElementsByTagName("span")[0].innerText = "Shaders | NEW";
+      }
+      windowEventHandler("shader-editor", "SHOW");
+    });
+  }
+
   const openShaderEditorButton = document.getElementById("open-shader-editor");
   if (openShaderEditorButton) {
     openShaderEditorButton.addEventListener("click", (e) => {
@@ -80,6 +104,9 @@ import Window from "./Window.astro";
   const shaderPrograms = document.querySelector("#shader-programs");
   if (shaderPrograms) {
     for (const shaderName in SHADERS) {
+      if (shaderName === "NEW") {
+        continue;
+      }
       const shaderProgramButton = document.createElement("div");
       shaderProgramButton.classList.add("shader-program");
       shaderProgramButton.setAttribute("data-shader-program", shaderName);
@@ -130,7 +157,7 @@ import Window from "./Window.astro";
           "shader-editor-textarea"
         ) as HTMLTextAreaElement;
         if (editor) {
-          editor.textContent = SHADERS[shaderName as keyof typeof SHADERS];
+          editor.value = SHADERS[shaderName as keyof typeof SHADERS];
         }
 
         const shaderTitle = document.querySelector(
@@ -160,6 +187,7 @@ import Window from "./Window.astro";
 
 <Window windowDataAttr="shaders" title="Shaders" windowIcon="Beizer.ico">
   <div id="shaders-app-bar" slot="app-bar">
+    <div id="new-shader"><u>N</u>ew</div>
     <div id="open-shader-programs-list"><u>O</u>pen</div>
     <div id="open-shader-editor"><u>E</u>dit</div>
   </div>

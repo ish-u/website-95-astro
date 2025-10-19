@@ -34,7 +34,7 @@ import Window from "./Window.astro";
     "shader-editor-textarea"
   ) as HTMLTextAreaElement;
   if (editor) {
-    editor.textContent = (window as any)?.currentFragmentShaderSource;
+    editor.value = (window as any)?.currentFragmentShaderSource ?? "";
   }
 
   const saveButton = document.getElementById("shader-editor-save-button");
